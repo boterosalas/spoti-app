@@ -1,1 +1,9 @@
-<p>home works!</p>
+<div class="card-columns">
+    <div class="card" *ngFor="let cancion of nuevasCanciones;index as i;">
+        <img [src]="cancion.images[0].url" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">{{ cancion.name }}</h5>
+            <a target="_blank" [href]="artista.external_urls.spotify" class="badge badge-pill badge-primary" *ngFor="let artista of cancion.artists">{{ artista.name }}</a>
+        </div>
+    </div>
+</div>
