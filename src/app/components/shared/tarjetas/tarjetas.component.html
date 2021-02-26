@@ -1,10 +1,10 @@
 <div class="card-columns animated fadeIn">
     <div class="card" *ngFor="let objeto of objetoArr;index as i;">
-        <img [src]="objeto.images | noimage" class="card-img-top" alt="..." (click)="visitarUrl(objeto)">
+        <img [src]="objeto.images | noimage" class="card-img-top puntero" [alt]="objeto.name" (click)="visitarUrl(objeto)">
         <div class="card-body">
-            <h5 class="card-title" (click)="visitarUrl(objeto)">{{ objeto.name }}</h5>
+            <h5 class="card-title"><span (click)="visitarUrl(objeto)" class="puntero">{{ objeto.name }}</span></h5>
             <div *ngIf="artistas">
-                <a target="_blank" class="badge badge-pill badge-primary" (click)="verArtista(artista.id)" *ngFor="let artista of objeto.artists">{{ artista.name }}</a>
+                <a target="_blank" class="badge badge-pill badge-primary puntero" (click)="verArtista(artista.id)" *ngFor="let artista of objeto.artists">{{ artista.name }}</a>
             </div>
         </div>
     </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { SpotifyService } from '../../../services/spotify.service'
 
 @Component({
   selector: 'app-tarjetas',
@@ -12,28 +13,24 @@ export class TarjetasComponent implements OnInit {
   @Input() artistas: boolean = true;
 
   constructor(
-    private router:Router
+    private router: Router,
+    private spotifyService: SpotifyService
   ) { }
 
   ngOnInit(): void {
   }
 
-  visitarUrl(objeto:number){
-    let id:number;
-    if(objeto['type']==='artist'){
-      id = objeto['id']
-      this.router.navigate(['/artista',id])
-    }else{
-      // id = objeto['artists'][0]['id']
-      console.log('Es un album');
-      
+  visitarUrl(objeto: string) {
+    let id: string = objeto['id'];
+    if (objeto['type'] === 'artist') {
+      this.router.navigate(['/artista', id])
+    } else {
+      this.router.navigate(['/album',id])
     }
-    console.log(objeto);
-    // this.router.navigate(['/artista',objeto])
   }
 
-  verArtista(id:number){
-    this.router.navigate(['/artista',id])
+  verArtista(id: number) {
+    this.router.navigate(['/artista', id])
   }
 
 }

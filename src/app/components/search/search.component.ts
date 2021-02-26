@@ -15,15 +15,17 @@ export class SearchComponent implements OnInit {
     private spotifyService: SpotifyService
   ) {
   }
-  
+
   buscar(termino: string) {
-  this.loading = true;
-    console.log(termino);
-    this.spotifyService.getArtista(termino)
-      .subscribe((data: any) => {
-        this.artistas = data;
-        console.log(this.artistas);
-        this.loading = false;
+    this.loading = true;
+    this.spotifyService.getToken()
+      .subscribe(data => {
+        this.spotifyService.setToken(data['access_token']);
+        this.spotifyService.getArtistas(termino)
+          .subscribe((data: any) => {
+            this.artistas = data;
+            this.loading = false;
+          })
       })
   }
 
